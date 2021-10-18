@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body,html{
+    margin:0;
+    height:100vh;
+    background: rgb(195, 214, 195);
+    background: linear-gradient(0deg, rgb(201, 201, 201) 23%, rgb(230, 230, 230) 100%);
+    font-family: 'Roboto';
+}
+
+.center, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+   height:400px;
+   width:400px;
+   display: flex;
+   flex-direction: column;
+}
+.row1{
+    flex: 70%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+    .highlighter::before{
+        background: white;
+        position:relative;
+        content: '';
+        display: block;
+        height:120px;
+        top:-120px;
+        background: rgb(42,172,42);
+        background: linear-gradient(0deg, rgba(221, 226, 221, 0.5) 18%, rgba(221, 226, 221,0.8547794117647058) 48%, rgba(221, 226, 221,1) 97%);        z-index:2;
+    }
+    .highlighter{
+        position: absolute;
+        top:120px;
+        height:50px;
+        width:100%;
+        background-color: rgb(192, 192, 192);
+    }
+    #words{
+        position:relative;
+        height: auto;
+        width:100%;
+        transition: all .2s;
+        letter-spacing: 5px;
+    }
+
+        
+        #words h2{
+            
+            height:50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: font-size, color, background-color .2s;
+            padding:0;
+            margin:0;
+            
+        }
+        .correct{
+            background-color: rgb(9, 169, 44);
+            color: white;
+        }
+        .wrong{
+            background-color: rgb(245, 33, 33);
+            color: white;
+        }
+       .highlight{
+            font-size: 40px;
+            color:white;
+        }
+           
+
+.row2{
+    flex: 30%;
+    flex-direction: column;
+    padding:10px;
+}
+
+    .row2 input{
+        height:45px;
+        width:90%;
+        border-radius: 50px;
+        border:1px solid rgb(158, 158, 158);
+        font-size: 20px;
+        text-align: center;
+        margin-bottom:10px;
+    }
+        .row2 input:focus{
+            outline-width: 0;
+        }
+    
+    .row2 .timer{
+        width:90%;
+        height: 3px;
+        overflow: hidden;
+        margin-bottom: 3px;
+    }
+        .timer .bar{
+            width:100%;
+            height: 10px;
+            background-color: rgb(29, 179, 74);
+            
+        }
+            .bar-animation{
+                animation-name: timer;
+                animation-duration: 2s;
+                animation-timing-function: linear;
+            }
+    .row2 button{
+        height:45px;
+        width:90px;
+        border-radius: 50px;
+        background-color: rgb(29, 179, 74);
+        border: none;
+        color: white;
+        font-size: 30px;
+    }
+        .row2 button:hover{
+            cursor: pointer;
+            background-color: rgb(21, 136, 55);
+        }
+        .row2 button:active{
+            background-color: rgb(29, 179, 74);
+        }
