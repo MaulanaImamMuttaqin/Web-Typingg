@@ -4,6 +4,8 @@ let input = document.querySelector("input")
 let reset_button = document.querySelector("button")
 let timer = document.querySelector('.timer');
 let typing_is_start = false
+let nexthighlight_is_clicked = true
+let settimer
 let current_highlight
 let current_typing
 
@@ -40,14 +42,22 @@ function update_words_position() {
     words_container.style.top = words_current_pos + "px"
 }
 
-function nextHighLight() {
-
+function nextHighLight(timesUp) {
+    start_timer_animation()
     current_highlight = document.querySelector(".highlight")
     current_highlight.classList.remove("highlight");
     current_highlight.nextElementSibling.classList.add("highlight")
     checkWord()
     update_words_position()
     input.value = ""
+
+    settimer = setTimeout(() => {
+        console.log("times up")
+        nextHighLight(true)
+    }, 2000)
+    if (!timesUp) {
+        clearTimeout(timer)
+    }
 
 }
 
@@ -67,7 +77,7 @@ function reset_words() {
     words_container.style.top = words_current_pos + "px"
     renderWords()
 }
-function reset_animation() {
+function start_timer_animation() {
     timer.firstElementChild.classList.remove("bar-animation");
     void timer.offsetWidth;
     timer.firstElementChild.classList.add("bar-animation")
@@ -91,32 +101,39 @@ function checkLetters() {
 function onKeyClick() {
     input.addEventListener("keypress", function (event) {
         if (event.key === " ") {
-            reset_animation()
-            nextHighLight()
+            current_typing = input.value.trim()
+            if (current_typing !== "") {
+                clearTimeout(settimer)
+                nextHighLight(false)
+            }
+
         }
+
     })
-    input.addEventListener("keyup", () => {
+    input.addEventListener("keyup", (event) => {
+        console.log("keyup")
+        if (typing_is_start === false) {
+            start_timer_animation()
+            typing_is_start = true
+            settimer = setTimeout(() => {
+                nextHighLight(true)
+            }, 2000)
+        }
         checkLetters()
     })
-
 
     reset_button.addEventListener("click", () => {
         reset_words()
     })
+
+
 }
 
-function typing_timer() {
 
-    // setInterval(() => {
-    //     nextHighLight()
-    //     reset_animation()
-    // }, 2000)
-}
 function Main() {
     words_container.style.top = words_current_pos + "px";
     renderWords()
     onKeyClick()
-    typing_timer()
 
 }
 
