@@ -110,7 +110,6 @@ body,html{
         }
             .bar-animation{
                 animation-name: timer;
-                animation-duration: 2s;
                 animation-timing-function: linear;
             }
     .row2 button{
